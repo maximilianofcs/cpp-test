@@ -30,8 +30,8 @@ public:
         cin >> value;
         while(cin.fail())
         {
-            cin.clear();
             cin.ignore();
+            cin.clear();
             cout << failMsg;
             cin >> value;
         }
