@@ -1,8 +1,15 @@
-#include <iostream>
-#include <algorithm>
-#include <string>
+#include "anagram.h"
 
-int main(int argc, char** argv)
+
+bool Anagram::isAnAnagram(string firstWord, string secondWord)
 {
-	return 0;
+    for(auto it = firstWord.begin(); it!=firstWord.end(); it++)
+    {
+        auto match = secondWord.find(*it, 0);
+        if ( match != string::npos )
+            secondWord.erase(match, 1);
+        else
+            return false;
+    }
+    return true;
 }
