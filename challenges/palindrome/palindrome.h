@@ -1,16 +1,28 @@
 #ifndef PALINDROME_H
 #define PALINDROME_H
 
-#include <string>
+#include "../common/CppTestApp.h"
 
 using namespace std;
 
-class Palindrome
+/**
+ * @brief The PalindromeApp class implement the Palindrome Challenger cpp-test
+ */
+class PalindromeApp : public CppTestApp
 {
 public:
-    Palindrome();
+    explicit PalindromeApp(istream& readStreamObj, ostream& outStreamObj) :
+        CppTestApp(readStreamObj, outStreamObj) {}
+
+    virtual ~PalindromeApp() {}
 
 public:
+    /**
+     * @brief run:
+     * @return exit code
+     */
+    virtual int run() override;
+
     /**
      * @brief isAPalindrome
      * @return True is the word is a palindrome
