@@ -8,6 +8,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(
     anagram
     main.cpp
-    helper.h
+    ../common/CppTestApp.h
     anagram.cpp anagram.h
     )
