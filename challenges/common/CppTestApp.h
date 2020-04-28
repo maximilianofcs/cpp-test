@@ -47,7 +47,6 @@ public:
      */
     void setWithMsgs(bool withMsgs) { this->withMsgs = withMsgs; }
 
-protected:
     /**
      * @brief readInt
      * @param askMsg: ask the user for type a number
@@ -58,8 +57,8 @@ protected:
         const string askMsg = "Type a number.",
         const string failMsg = "Not a valid number. Try again.")
     {
-        int value = INT_MIN;
         string line;
+        int value = INT_MIN;
         while (value == INT_MIN)
         {
             if (withMsgs)
@@ -79,7 +78,6 @@ protected:
         return value;
     }
 
-
     /**
      * @brief getNumOfLinesToRead: common function with common message used in
      * many cpp-tests
@@ -93,7 +91,6 @@ protected:
     {
         return this->readInt(askMsg, failMsg);
     }
-
 
     /**
      * @brief readWords
@@ -127,7 +124,7 @@ protected:
         std::vector<std::string> words;
         size_t start = 0;
         size_t end = 0;
-        while ((start = line.find_first_not_of(delim, end)) != std::string::npos) {
+        while ((start = line.find_first_not_of(delim, end)) != string::npos) {
             end = line.find(delim, start);
             words.push_back(line.substr(start, end - start));
         }
@@ -151,16 +148,16 @@ protected:
         if (withMsgs)
             cout << askMsg << endl;
         auto values = readWords(numOfInts, failMsg);
-        for(auto it=values.begin(); it!=values.end(); it++)
+        for(string& value : values)
         {
             try
             {
-                int number = stoi(*it);
+                int number = stoi(value);
                 results.push_back(number);
             }
             catch (...)
             {
-                outStream << *it << endl;
+                outStream << value << endl;
                 outStream << failMsg << endl;
             }
         }

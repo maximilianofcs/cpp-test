@@ -7,6 +7,7 @@
 #include <string>
 
 #include <boost/test/included/unit_test.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include "CppTestApp.h"
 
@@ -21,7 +22,7 @@ class Test
 public:
     explicit Test(string inputFileName, string expectedFileName)
     {
-        cout << "*** Testing using: " << inputFileName << " and: " << expectedFileName << endl;
+        cout << "***** Testing using: " << inputFileName << " and: " << expectedFileName << endl;
 
         // Open the input1 file
         inputFile.open(inputFileName, ifstream::in);
@@ -66,7 +67,16 @@ public:
         cout << "** Expected:" << endl << expected.str() << endl;
         cout << "** Result:" << endl << result.str() << endl;
 
-        BOOST_TEST_REQUIRE( expected.str() == result.str() );
+        // Compare each line result == expected
+        auto expecteds = testApp.splitWords(result.str(), '\n');
+        auto results = testApp.splitWords(result.str(), '\n');
+        auto resultIt = results.begin();
+
+        for(string& expectedLine : expecteds)
+        {
+            BOOST_TEST_REQUIRE( expectedLine == *resultIt );
+            resultIt++;
+        }
     }
 
     /**
