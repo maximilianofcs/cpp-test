@@ -28,7 +28,7 @@ private:
 
 public:
     /**
-     * @brief App::run run teh stairway_to_heavem application
+     * @brief App::run run the classroom cpp-test application
      */
     virtual int run() override;
 
